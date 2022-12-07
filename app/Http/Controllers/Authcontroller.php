@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class Authcontroller extends Controller
 {
-
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
@@ -36,7 +35,6 @@ class Authcontroller extends Controller
             ]
         ]);
     }
-
     public function login(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
@@ -51,11 +49,9 @@ class Authcontroller extends Controller
 
         return $this->createNewToken($token);
     }
-
     public function profile(){
         return response()->json($user = auth('api')->user());
     }
-
     public function logout(){
         auth('api')->logout();
         return response()->json([
@@ -63,7 +59,6 @@ class Authcontroller extends Controller
             'message' => 'Successfully logged out',
         ]);
     }
-
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,
@@ -72,6 +67,4 @@ class Authcontroller extends Controller
             'user' => auth('api')->user()
         ]);
     }
-
-
 }

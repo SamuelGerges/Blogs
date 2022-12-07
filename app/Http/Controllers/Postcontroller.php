@@ -30,7 +30,6 @@ class Postcontroller extends Controller
             'post' => $post,
         ]);
     }
-
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
@@ -48,6 +47,4 @@ class Postcontroller extends Controller
             'post' => $post,
         ]);
     }
-
-    
 }
