@@ -34,4 +34,14 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+        public function scopeSelection($query)
+    {
+        return $query->select('id','name','age','email') ;
+    }
+    public function post()
+    {
+        return $this->hasMany(Post::class,'user_id','id');
+    }
+
+
 }

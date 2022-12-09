@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Validator;
 
 class Postcontroller extends Controller
 {
+    public function userPosts()
+    {
+        return response()->json(Post::with('user')->selection()->get());
+    }
+
     public function add(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -30,6 +35,7 @@ class Postcontroller extends Controller
             'post' => $post,
         ]);
     }
+
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
