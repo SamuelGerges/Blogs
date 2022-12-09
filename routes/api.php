@@ -33,16 +33,23 @@ Route::middleware('auth:api')->controller(Postcontroller::class)
     ->group(function () {
         Route::post('add_post', 'add')->name('add');
         Route::patch('update/{id}',  'update')->name('update');
-        Route::get('user-posts',  'userPosts');
+        Route::get('user-posts',  'userPosts')->name('user-posts');
     });
 
 
 Route::middleware('auth:api')->controller(AdminController::class)
     ->prefix('admin')
     ->group(function (){
-        Route::get('posts','getPostIsPending');
-        Route::patch('rejected/{id}','rejected');
-        Route::delete('delete-post/{id}','deletePost');
-        Route::delete('destroy/{id}','destroy');
+        Route::get('posts','getPostIsPending')->name('posts');
+        Route::patch('rejected/{id}','rejected')->name('rejected');
+        Route::delete('delete-post/{id}','deletePost')->name('delete-post');
+        Route::delete('destroy/{id}','destroy')->name('destroy');
+        Route::get('get-users','users')->name('get-users');
+        Route::post('add-admins','addAdmin')->name('add-admins');
     });
+
+
+
+
+
 
